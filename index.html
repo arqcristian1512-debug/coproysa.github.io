@@ -1404,11 +1404,7 @@
 
   let menuOpen = false;
   function toggleMenu() {
-    menuOpen = !menuOpen;
-    const links = document.querySelector('.nav-links');
-    links.style.cssText = menuOpen
-      ? 'display:flex;flex-direction:column;position:fixed;top:72px;left:0;right:0;background:#fff;padding:20px;gap:18px;border-bottom:2px solid #2e7aad;box-shadow:0 8px 20px rgba(0,0,0,0.1);z-index:999;'
-      : '';
+    document.querySelector('.nav-links').classList.toggle('open');
   }
   document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => { menuOpen = false; document.querySelector('.nav-links').style.cssText = ''; }));
 
@@ -1749,6 +1745,116 @@
     font-weight: 600;
   }
   .chat-suggestion:hover { background: #2a4fa8; color: #fff; border-color: #2a4fa8; }
+
+/* ============================================================
+   MOBILE RESPONSIVE — corregido
+   ============================================================ */
+@media (max-width: 768px) {
+  :root { --section-pad: 60px 0; }
+
+  /* NAV */
+  nav { padding: 0 20px; height: 68px; }
+  .nav-links { 
+    display: none; flex-direction: column; gap: 0;
+    position: absolute; top: 68px; left: 0; right: 0;
+    background: var(--white); border-top: 1px solid var(--border);
+    padding: 16px 0; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    z-index: 999;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a { display: block; padding: 12px 24px; font-size: 0.9rem; }
+  .nav-cta { margin: 8px 24px; padding: 10px 16px !important; text-align: center; }
+  .nav-toggle { display: flex; }
+
+  /* HERO */
+  #hero { height: auto; min-height: 100svh; padding-top: 68px; }
+  .hero-bg { background-position: center right; }
+  .hero-content { padding: 40px 20px; max-width: 100%; }
+  .hero-content h1 { font-size: clamp(2rem, 9vw, 3rem); }
+  .hero-content p { font-size: 0.95rem; max-width: 100%; }
+  .hero-actions { flex-direction: column; gap: 10px; }
+  .hero-actions a, .hero-actions button { width: 100%; text-align: center; }
+  .hero-badges { 
+    position: relative; bottom: auto; right: auto;
+    flex-wrap: wrap; justify-content: center;
+    padding: 20px; gap: 12px;
+  }
+  .hero-badge { padding: 12px 16px; }
+
+  /* CONTAINER */
+  .container { padding: 0 20px; }
+
+  /* SERVICIOS */
+  .servicios-header { grid-template-columns: 1fr; gap: 20px; margin-bottom: 32px; }
+  .servicios-grid { grid-template-columns: 1fr; gap: 16px; }
+
+  /* EXPERIENCIA / DISCIPLINAS */
+  .disc-row, .disciplina-row, [class*="disc-"] { 
+    display: flex !important; flex-direction: column !important; 
+    gap: 16px;
+  }
+  .disc-img, .disciplina-img, [class*="disc-img"] { 
+    width: 100% !important; height: 200px !important; 
+  }
+  .disc-cols, .disciplinas-cols, [class*="cols"] { 
+    grid-template-columns: 1fr !important; 
+  }
+
+  /* STATS / COUNTERS */
+  .stats-row, .counters, [class*="stats"] { 
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 16px;
+  }
+
+  /* PROYECTOS GRID */
+  .proyectos-grid, .projects-grid, [class*="proyectos"] { 
+    grid-template-columns: 1fr !important; 
+  }
+
+  /* TESTIMONIOS */
+  .testimonios-grid, [class*="testimonios"] { 
+    grid-template-columns: 1fr !important; 
+  }
+
+  /* TEAM */
+  .team-grid, [class*="team"] { 
+    grid-template-columns: repeat(2, 1fr) !important; 
+  }
+
+  /* CONTACT */
+  .contact-grid, .contacto-grid { 
+    grid-template-columns: 1fr !important; 
+  }
+
+  /* SECTION TITLES */
+  .section-title { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+
+  /* FOOTER */
+  footer .footer-grid, footer [class*="grid"] { 
+    grid-template-columns: 1fr !important; 
+    gap: 32px;
+  }
+
+  /* GENERAL OVERFLOW FIX */
+  body, html { overflow-x: hidden; }
+  * { max-width: 100%; }
+  img { max-width: 100%; height: auto; }
+  table { display: block; overflow-x: auto; }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 { font-size: clamp(1.8rem, 8vw, 2.4rem); }
+  .stats-row, .counters, [class*="stats"] { 
+    grid-template-columns: 1fr !important; 
+  }
+  .team-grid, [class*="team"] { 
+    grid-template-columns: 1fr !important; 
+  }
+  .btn-primary, .btn-red, .btn-outline { 
+    width: 100%; text-align: center; 
+  }
+}
 </style>
 
 <div id="chat-widget">
