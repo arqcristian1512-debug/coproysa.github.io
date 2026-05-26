@@ -1403,10 +1403,46 @@
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
   let menuOpen = false;
-  function toggleMenu() {
-    document.querySelector('.nav-links').classList.toggle('open');
+  function cerrarMenu() {
+    const nav = document.querySelector('.nav-links');
+    const btn = document.querySelector('.nav-toggle');
+    nav.style.display = 'none';
+    nav.classList.remove('open');
+    btn.classList.remove('active');
+    setTimeout(() => { nav.style.display = ''; }, 50);
   }
-  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => { menuOpen = false; document.querySelector('.nav-links').style.cssText = ''; }));
+
+  function toggleMenu() {
+    const nav = document.querySelector('.nav-links');
+    const btn = document.querySelector('.nav-toggle');
+    if (nav.classList.contains('open')) {
+      cerrarMenu();
+    } else {
+      nav.classList.add('open');
+      btn.classList.add('active');
+    }
+  }
+
+  // Cerrar INMEDIATAMENTE al tocar un enlace
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => cerrarMenu());
+  });
+
+  // Cerrar al tocar fuera (móvil y escritorio)
+  document.addEventListener('touchstart', (e) => {
+    const nav = document.querySelector('.nav-links');
+    const btn = document.querySelector('.nav-toggle');
+    if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
+      cerrarMenu();
+    }
+  });
+  document.addEventListener('click', (e) => {
+    const nav = document.querySelector('.nav-links');
+    const btn = document.querySelector('.nav-toggle');
+    if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
+      cerrarMenu();
+    }
+  });
 
   function toggleDato(header) {
     const body = header.nextElementSibling;
