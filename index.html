@@ -1855,6 +1855,52 @@
     width: 100%; text-align: center; 
   }
 }
+
+  /* ============================================================
+     FIX INLINE STYLES — Disciplinas y métricas (móvil)
+     ============================================================ */
+  @media (max-width: 768px) {
+
+    /* Filas de disciplina: 4 columnas fijas → columna única */
+    #experiencia [style*="grid-template-columns: 96px"] {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 12px !important;
+    }
+
+    /* Imagen de disciplina */
+    #experiencia [style*="width: 96px; height: 96px"] {
+      width: 100% !important;
+      height: 180px !important;
+      background-size: cover !important;
+    }
+
+    /* Métricas: 4 columnas → 2 columnas */
+    #experiencia [style*="grid-template-columns: repeat(4, 1fr)"] {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Banner de experiencia */
+    #experiencia [style*="height: 280px"] {
+      height: auto !important;
+      min-height: 180px !important;
+    }
+    #experiencia [style*="padding: 32px 40px"] {
+      padding: 20px !important;
+    }
+
+    /* Padding métricas */
+    #experiencia [style*="padding: 32px 24px"] {
+      padding: 20px 16px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    /* Métricas: 2 columnas → 1 columna */
+    #experiencia [style*="grid-template-columns: repeat(4, 1fr)"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
 </style>
 
 <div id="chat-widget">
