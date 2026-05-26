@@ -359,8 +359,6 @@
   @media (max-width: 900px) {
     nav { padding: 0 20px; height: 72px; }
     .nav-logo img { height: 45px; }
-    .nav-links { display: none !important; }
-    .nav-links.open { display: flex !important; }
     .nav-toggle { display: flex; }
     .hero-content { padding: 0 20px 0 32px; }
     .hero-badges { display: none; }
@@ -1404,39 +1402,37 @@
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
   let menuOpen = false;
-  function cerrarMenu() {
-    var nav = document.querySelector('.nav-links');
-    var btn = document.querySelector('.nav-toggle');
-    nav.classList.remove('open');
-    btn.classList.remove('active');
-  }
-
   function toggleMenu() {
-    var nav = document.querySelector('.nav-links');
-    var btn = document.querySelector('.nav-toggle');
-    if (nav.classList.contains('open')) {
-      cerrarMenu();
-    } else {
-      nav.classList.add('open');
-      btn.classList.add('active');
-    }
+    // Solo actúa en móvil
+    if (window.innerWidth > 768) return;
+    document.querySelector('.nav-links').classList.toggle('open');
   }
 
-  // Cerrar menú al tocar cualquier enlace — touchstart es instantáneo
+  // Cerrar menú solo en móvil al tocar un enlace
   document.querySelectorAll('.nav-links a').forEach(function(a) {
-    a.addEventListener('touchstart', function() {
-      cerrarMenu();
-    }, { passive: true });
+    a.addEventListener('click', function() {
+      if (window.innerWidth <= 768) {
+        document.querySelector('.nav-links').classList.remove('open');
+      }
+    });
   });
 
-  // Cerrar al tocar fuera del menú
-  document.addEventListener('touchstart', function(e) {
+  // Cerrar al tocar fuera en móvil
+  document.addEventListener('click', function(e) {
+    if (window.innerWidth > 768) return;
     var nav = document.querySelector('.nav-links');
     var btn = document.querySelector('.nav-toggle');
-    if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
-      cerrarMenu();
+    if (!nav.contains(e.target) && !btn.contains(e.target)) {
+      nav.classList.remove('open');
     }
-  }, { passive: true });
+  });
+
+  // Al redimensionar a escritorio, limpiar clase open
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+      document.querySelector('.nav-links').classList.remove('open');
+    }
+  });
 
   function toggleDato(header) {
     const body = header.nextElementSibling;
@@ -1791,7 +1787,7 @@
     padding: 16px 0; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     z-index: 999;
   }
-  .nav-links.open { display: flex !important; }
+  .nav-links.open { display: flex; }
   .nav-links li { width: 100%; }
   .nav-links a { display: block; padding: 12px 24px; font-size: 0.9rem; }
   .nav-cta { margin: 8px 24px; padding: 10px 16px !important; text-align: center; }
