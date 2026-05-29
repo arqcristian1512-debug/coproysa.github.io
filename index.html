@@ -54,7 +54,7 @@
   "url": "https://coproysa.com",
   "logo": "https://coproysa.com/img/logo-coproysa.png",
   "image": "https://coproysa.com/img/og-image.jpg",
-  "email": "contacto@coproysa.com",
+  "email": "info@coproysa.com",
   "telephone": "+57-321-803-0988",
   "priceRange": "$$",
   "address": {
@@ -1313,7 +1313,7 @@
         <div class="contact-items">
           <div class="contact-item">
             <div class="contact-item-icon">✉</div>
-            <div><div class="contact-item-label">Correo electrónico</div><a href="/cdn-cgi/l/email-protection#60030f0e140103140f20030f10120f1913014e030f0d" class="contact-item-val"><span class="__cf_email__" data-cfemail="86e5e9e8f2e7e5f2e9c6e5e9f6f4e9fff5e7a8e5e9eb">[email&#160;protected]</span></a></div>
+            <div><div class="contact-item-label">Correo electrónico</div><a href="mailto:info@coproysa.com" class="contact-item-val">info@coproysa.com</a></div>
           </div>
           <div class="contact-item">
             <div class="contact-item-icon">📱</div>
@@ -1378,7 +1378,7 @@
       <div class="footer-col">
         <h5>Contacto</h5>
         <ul>
-          <li><a href="/cdn-cgi/l/email-protection#83e0ecedf7e2e0f7ecc3e0ecf3f1ecfaf0e2ade0ecee"><span class="__cf_email__" data-cfemail="f5969a9b819496819ab5969a85879a8c8694db969a98">[email&#160;protected]</span></a></li>
+          <li><a href="mailto:info@coproysa.com">info@coproysa.com</a></li>
           <li><a href="tel:+573218030988">+57 321 803 0988</a></li>
           <li><a href="https://maps.google.com/?q=Manizales,Caldas,Colombia" target="_blank" rel="noopener">Manizales, Caldas</a></li>
           <li><a href="https://www.facebook.com/Coproysa-construcciones-1485186675127183" target="_blank">Facebook</a></li>
@@ -1464,10 +1464,12 @@
     btn.disabled = true;
     try {
       // Formspree — reemplazar YOUR_FORM_ID con el ID de su cuenta en formspree.io
-      const res = await fetch('https://formspree.io/f/contacto@coproysa.com', {
+      const res = await fetch('https://formsubmit.co/ajax/info@coproysa.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
+          _subject: 'Nuevo contacto desde coproysa.com',
+          _name: 'Coproysa Construcciones',
           nombre: nombre,
           telefono: document.getElementById('f-telefono').value,
           email: email,
@@ -1485,7 +1487,7 @@
       }
     } catch {
       msg.style.color = 'var(--red)';
-      msg.textContent = '⚠ Hubo un error. Por favor escríbanos directamente a contacto@coproysa.com o por WhatsApp.';
+      msg.textContent = '⚠ Hubo un error. Por favor escríbanos directamente a info@coproysa.com o por WhatsApp.';
       btn.textContent = 'Enviar Consulta Gratuita';
       btn.disabled = false;
     }
@@ -2060,16 +2062,16 @@
 
   // Respuestas automáticas
   const responses = {
-    'cotizar': '¡Con gusto! Para cotizar tu proyecto necesito algunos datos. ¿Puedes escribirnos a <strong>contacto@coproysa.com</strong> o al <strong>WhatsApp</strong>? También puedes ir a nuestra sección de Contacto 📋',
+    'cotizar': '¡Con gusto! Para cotizar tu proyecto necesito algunos datos. ¿Puedes escribirnos a <strong>info@coproysa.com</strong> o al <strong>WhatsApp</strong>? También puedes ir a nuestra sección de Contacto 📋',
     'servicio': 'Ofrecemos <strong>Diseño Arquitectónico, Construcción y Consultoría</strong> para proyectos residenciales, comerciales y del sector público en Manizales. ¿Te interesa alguno en particular?',
-    'contacto': 'Puedes contactarnos en:<br>📧 contacto@coproysa.com<br>📍 Manizales, Colombia<br>O ve a la sección de <strong>Contacto</strong> en esta misma página.',
+    'contacto': 'Puedes contactarnos en:<br>📧 info@coproysa.com<br>📍 Manizales, Colombia<br>O ve a la sección de <strong>Contacto</strong> en esta misma página.',
     'portafolio': '¡Tenemos excelentes proyectos! Desplázate hasta la sección <strong>Portafolio</strong> en esta página para ver nuestros trabajos más recientes. 🏗️',
     'precio': 'Los precios varían según el tipo y alcance del proyecto. Te recomendamos solicitar una <strong>consulta gratuita</strong> para recibir una cotización personalizada.',
     'diseño': 'Nuestro equipo de arquitectos crea diseños modernos y funcionales adaptados a tus necesidades. ¿Tienes un proyecto en mente?',
     'construc': 'Ejecutamos obras con los más altos estándares de calidad, cumpliendo plazos y presupuestos. ¿Qué tipo de construcción necesitas?',
     'hola': '¡Hola! 😊 ¿En qué te puedo ayudar? Puedes preguntarme sobre nuestros servicios, portafolio, precios o contacto.',
     'gracias': '¡Con mucho gusto! Si tienes más preguntas, aquí estaré. 😊',
-    'default': 'Gracias por tu mensaje. Para darte una respuesta más precisa, te recomiendo contactarnos directamente en <strong>contacto@coproysa.com</strong> o usar el formulario de Contacto. ¡Estamos para ayudarte!'
+    'default': 'Gracias por tu mensaje. Para darte una respuesta más precisa, te recomiendo contactarnos directamente en <strong>info@coproysa.com</strong> o usar el formulario de Contacto. ¡Estamos para ayudarte!'
   };
 
   function getResponse(text) {
